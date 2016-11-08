@@ -22,6 +22,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'othree/html5.vim'
 
     Plug 'pangloss/vim-javascript'
+    Plug 'jelera/vim-javascript-syntax'
     Plug 'othree/javascript-libraries-syntax.vim'
     Plug 'mxw/vim-jsx'
     Plug 'elzr/vim-json'
@@ -45,8 +46,6 @@ call plug#end()
 
 
 "Shortcuts
-"Toggle fullscreen
-map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
 "Set CHW to the current dir
 map <Leader>chd :chdir<CR>
 "Edit vimrc
@@ -73,16 +72,11 @@ set guioptions-=L "Hide left scroll bar
 set foldcolumn=1 "Left margin
 
 colo Tomorrow-Night-Eighties
-set guifont=InputMono:h12
-set rop=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1 "Render using DirectX
+set guifont=Fira\ Mono\ for\ Powerline:h12
 
 
 
 "Behaviour
-if has("gui_running")
-    autocmd VimEnter * call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0) "Full screen on startup
-endif
-
 set autoread "Automatically re-read a file when it's been changed outside of VIM
 
 set nowrap "Turn off wrapping
@@ -121,6 +115,7 @@ let g:airline#extensions#tabline#enabled=1
 "NERDTree
 map <C-n> :NERDTreeToggle<CR>
 map <C-k> :NERDTree 
+let NERDTreeWinSize=25
 
 
 
@@ -139,12 +134,25 @@ map <Leader>gg :Ggrep
 
 
 
+"CSS
+autocmd Filetype css setlocal foldmethod=syntax "Use syntax folding in CSS files
+autocmd Filetype css normal zR
+
+
+
+"Markdown
+autocmd Filetype markdown setlocal wrap "Enable wrapping in Markdown files
+autocmd Filetype markdown setlocal linebreak
+
+
+
 "JavaScript
-autocmd Filetype javascript setlocal foldmethod=syntax "Use syntax folding in JS files
 autocmd Filetype javascript setlocal shiftwidth=2 "Indent width should be 2
 autocmd Filetype javascript setlocal softtabstop=2 "Soft TAB should be 2
 
 let g:used_javascript_libs = 'lo-dash,react,flux,backbone'
+
+let g:jsx_ext_required = 0
 
 let g:javascript_plugin_jsdoc=1
 let g:javascript_plugin_flow=1
@@ -176,7 +184,7 @@ let g:go_highlight_build_constraints = 1
 "Zeal
 let g:zv_zeal_executable = 'D:\Tools\Zeal Portable\zeal.exe'
 let g:zv_file_types = {
-            \ 'js': 'javascript,lodash,nodejs',
+            \ 'js': 'javascript,lodash,nodejs,react',
             \ 'py': 'python3,flask,jinja,django',
             \ 'css': 'css,less,sass,bootstrap4',
             \ }
@@ -210,7 +218,13 @@ set hidden
 set showtabline=1
 let g:CtrlSpaceUseTabline=1
 let g:airline_exclude_preview=1
+let g:CtrlSpaceSetDefaultMapping=0
+"let g:CtrlSpaceLoadLastWorkspaceOnStart=1
 
 if executable("pt")
     let g:CtrlSpaceGlobCommand = 'pt -l --nocolor -g ""'
+endif
+
+if has("gui_running")
+    let g:CtrlSpaceSymbols = { "File": "◯", "CTab": "▣", "Tabs": "▢" }
 endif
