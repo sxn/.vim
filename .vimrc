@@ -34,13 +34,7 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'ekalinin/dockerfile.vim'
 
-    Plug 'KabbAmine/zeavim.vim', {'on': [
-                \   'Zeavim', 'Docset',
-                \   '<Plug>Zeavim',
-                \   '<Plug>ZVVisSelection',
-                \   '<Plug>ZVKeyDocset',
-                \   '<Plug>ZVMotion'
-                \ ]}
+    Plug 'rizzatti/dash.vim'
 call plug#end()
 
 
@@ -72,12 +66,13 @@ set guioptions-=L "Hide left scroll bar
 set foldcolumn=1 "Left margin
 
 colo Tomorrow-Night-Eighties
-set guifont=Fira\ Mono\ for\ Powerline:h12
+set guifont=Fira\ Mono\ for\ Powerline:h16
 
 
 
 "Behaviour
 set autoread "Automatically re-read a file when it's been changed outside of VIM
+set shell=sh
 
 set nowrap "Turn off wrapping
 
@@ -114,6 +109,7 @@ let g:airline#extensions#tabline#enabled=1
 
 "NERDTree
 map <C-n> :NERDTreeToggle<CR>
+map <C-g> :NERDTreeFind<CR>
 map <C-k> :NERDTree 
 let NERDTreeWinSize=25
 
@@ -152,7 +148,7 @@ autocmd Filetype javascript setlocal softtabstop=2 "Soft TAB should be 2
 
 let g:used_javascript_libs = 'lo-dash,react,flux,backbone'
 
-let g:jsx_ext_required = 0
+let g:jsx_ext_required=0
 
 let g:javascript_plugin_jsdoc=1
 let g:javascript_plugin_flow=1
@@ -181,13 +177,8 @@ let g:go_highlight_build_constraints = 1
 
 
 
-"Zeal
-let g:zv_zeal_executable = 'D:\Tools\Zeal Portable\zeal.exe'
-let g:zv_file_types = {
-            \ 'js': 'javascript,lodash,nodejs,react',
-            \ 'py': 'python3,flask,jinja,django',
-            \ 'css': 'css,less,sass,bootstrap4',
-            \ }
+"Dash
+nmap <silent> <leader>d <Plug>DashSearch
 
 
 
@@ -219,10 +210,12 @@ set showtabline=1
 let g:CtrlSpaceUseTabline=1
 let g:airline_exclude_preview=1
 let g:CtrlSpaceSetDefaultMapping=0
-"let g:CtrlSpaceLoadLastWorkspaceOnStart=1
+let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
+let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
+let g:CtrlSpaceSaveWorkspaceOnExit = 1
 
-if executable("pt")
-    let g:CtrlSpaceGlobCommand = 'pt -l --nocolor -g ""'
+if executable("ag")
+    let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
 endif
 
 if has("gui_running")

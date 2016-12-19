@@ -1,1 +1,5 @@
 vim80/
+.DS_Store
+plugged/
+backup/
+undo/
