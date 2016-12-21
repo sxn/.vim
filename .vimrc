@@ -99,11 +99,13 @@ set undodir=~/.vim/undo/     "Store undos here
 
 "Airline
 set laststatus=2
-let g:airline_powerline_fonts = 1
-let g:airline_theme='tomorrow'
-let g:Powerline_symbols='unicode'
-let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
-let g:airline#extensions#tabline#enabled=1
+if exists(':AirlineRefresh')
+    let g:airline_powerline_fonts = 1
+    let g:airline_theme='tomorrow'
+    let g:Powerline_symbols='unicode'
+    let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
+    let g:airline#extensions#tabline#enabled=1
+endif
 
 
 
