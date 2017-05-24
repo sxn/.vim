@@ -66,7 +66,7 @@ set guioptions-=L "Hide left scroll bar
 set foldcolumn=1 "Left margin
 
 colo Tomorrow-Night-Eighties
-set guifont=Fira\ Mono\ for\ Powerline:h16
+set guifont=Fira\ Code:h16
 
 
 
