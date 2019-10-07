@@ -17,8 +17,6 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'tpope/vim-markdown'
 
-    Plug 'fatih/vim-go'
-
     Plug 'othree/html5.vim'
 
     Plug 'pangloss/vim-javascript'
