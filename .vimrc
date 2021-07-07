@@ -70,8 +70,6 @@ set foldcolumn=1 "Left margin
 colo Tomorrow-Night-Eighties
 set guifont=Fira\ Code:h16
 
-
-
 "Behaviour
 set autoread "Automatically re-read a file when it's been changed outside of VIM
 set shell=sh
